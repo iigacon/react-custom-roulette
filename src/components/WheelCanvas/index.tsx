@@ -191,6 +191,24 @@ const drawWheel = (
           img.width,
           img.height
         );
+
+        if(data[i].option){
+          contentRotationAngle += perpendicularText ? Math.PI / 2 : 0;
+          ctx.rotate(contentRotationAngle);
+  
+          const text = data[i].option;
+          ctx.font = `${style?.fontStyle || fontStyle} ${
+            style?.fontWeight || fontWeight
+          } ${(style?.fontSize || fontSize) * 2}px ${
+            style?.fontFamily || fontFamily
+          }, Helvetica, Arial`;
+          ctx.fillStyle = (style && style.textColor) as string;
+          ctx.fillText(
+            text || '',
+            -ctx.measureText(text || '').width / 2,
+            fontSize / 2.7
+          );
+        }
       } else {
         // CASE TEXT
         contentRotationAngle += perpendicularText ? Math.PI / 2 : 0;
